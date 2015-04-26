@@ -18,6 +18,9 @@ function onConnect(socket) {
   });
 
   // Insert sockets below
+  require('../api/papaclass/papaclass.socket').register(socket);
+  require('../api/activity/activity.socket').register(socket);
+  require('../api/community/community.socket').register(socket);
   require('../api/thing/thing.socket').register(socket);
 }
 
