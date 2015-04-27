@@ -45,7 +45,7 @@ BUILDPACK_URL = https://github.com/jakeorr/heroku-buildpack-nodejs-grunt-compass
 
 To change env of your local develop envorinment, you should use : /server/config/environment/development.js
 
-
+http://gohugo.io/
 
 
 

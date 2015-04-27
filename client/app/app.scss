@@ -15,6 +15,93 @@ $fa-font-path: "/bower_components/font-awesome/fonts";
     padding: 0.2em 0;
 }
 
+
+
+.header {
+    display: table;
+    height: 70%;
+    width: 100%;
+    min-height: 70%;
+    position: relative;
+    background: url(../assets/images/desk-long.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    z-index: 99999;
+    background-color: black;
+}
+
+.big-ban-transparent {
+    position: relative;
+    padding: 50px 15px;
+    color: #F5F5F5;
+    text-align: center;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+}
+
+.big-ban-1 {
+    position: relative;
+    padding: 50px 15px;
+    color: #F5F5F5;
+    text-align: center;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+    background: #4393B9;
+}
+
+.big-ban-2 {
+    position: relative;
+    padding: 50px 15px;
+    text-align: center;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+    background-color: rgb(255, 252, 244);
+}
+
+
+.big-ban-1-1 {
+    position: relative;
+    padding: 50px 15px;
+    color: #F5F5F5;
+    text-align: center;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+    background: rgb(96,210,211);
+}
+
+@media only screen
+and (min-device-width : 320px)
+and (max-device-width : 1024px)
+and (orientation : portrait)
+{
+    .header {
+        display: table;
+        height: 70%;
+        width: 100%;
+        position: relative;
+        background: url(../assets/images/desk-mini.jpg) no-repeat;
+        background-size: 100% 100%;
+        z-index: 99999;
+        background-color: black;
+    }
+}
+
+@media only screen
+and (min-device-width : 320px)
+and (max-device-width : 1024px)
+and (orientation : landscape) {
+    .header {
+        display: table;
+        height: 70%;
+        width: 100%;
+        position: relative;
+        background: url(../assets/images/desk-long.jpg) no-repeat;
+        background-size: 100% 100%;
+        z-index: 99999;
+        background-color: black;
+    }
+}
+
+
+
 // Component styles are injected through grunt
 // injector
 @import 'main/main.scss';
