@@ -1,4 +1,19 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
 <div class="container">
 	社区
+	<div style="height: 305px">
+		<carousel interval="myInterval">
+		<slide ng-repeat="slide in slides" active="slide.active">
+		<img ng-src="{{slide.image}}" style="margin:auto;">
+		<div class="carousel-caption">
+			<h4>Slide {{$index}}</h4>
+
+			<p>{{slide.text}}</p>
+
+			<a href="#action" class="glyphicon glyphicon-chevron-down"> <i class="icon-arrow-down"></i></a>
+		</div>
+		</slide>
+		</carousel>
+	</div>
+
 </div>
