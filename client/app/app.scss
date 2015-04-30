@@ -15,9 +15,18 @@ $fa-font-path: "/bower_components/font-awesome/fonts";
     padding: 0.2em 0;
 }
 
+.banner {
+    border-bottom: none;
+    margin-top: -20px;
+}
 
+.banner h1 {
+    font-size: 60px;
+    line-height: 1;
+    letter-spacing: -1px;
+}
 
-.header {
+.pictureBackground {
     display: table;
     height: 70%;
     width: 100%;
@@ -41,30 +50,43 @@ $fa-font-path: "/bower_components/font-awesome/fonts";
 }
 
 .big-ban-1 {
-    position: relative;
-    padding: 50px 15px;
     color: #F5F5F5;
-    text-align: center;
-    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
-    background: #4393B9;
+    background: #29C3CB;
 }
 
 .big-ban-2 {
-    position: relative;
-    padding: 50px 15px;
-    text-align: center;
-    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
-    background-color: rgb(255, 252, 244);
+    color: #F5F5F5;
+    background-color: #FDA720;
 }
 
+.big-ban-3 {
+    color: #F5F5F5;
+    background: #1B374C;
+}
 
-.big-ban-1-1 {
+.big-ban-4 {
+    color: #F5F5F5;
+    background: #EF5030;
+}
+
+.big-ban-5 {
+    color: #F5F5F5;
+    background: #108896;
+}
+
+.big-ban-6 {
+    background: #FCEBB6;
+}
+
+.big-ban{
     position: relative;
     padding: 50px 15px;
-    color: #F5F5F5;
     text-align: center;
     text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
-    background: rgb(96,210,211);
+}
+
+.big-ban h1{
+    text-shadow: 0 8px 0 rgba(0, 0, 0, 0.1);
 }
 
 @media only screen
