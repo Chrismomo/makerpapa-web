@@ -9,6 +9,7 @@ angular.module('makerPaPaApp')
                     function(response) {
                         $scope.data = response;
                         $log.debug($scope.data);
+                        $log.debug("ddddd")
 
                     },
                     function(response) {
