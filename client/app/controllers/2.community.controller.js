@@ -7,10 +7,8 @@ angular.module('makerPaPaApp')
             CommunityService.getAll()
                 .promise.then(
                     function(response) {
-                        $scope.data = response;
-                        $log.debug($scope.data);
-                        $log.debug("ddddd")
-
+                        $scope.items = response;
+                        $log.debug($scope.items);
                     },
                     function(response) {
                         alert("get portal app error");

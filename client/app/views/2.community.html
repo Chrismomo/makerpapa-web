@@ -16,7 +16,20 @@
 		</carousel>
 	</div>
 
-	<div class="container contenta" ng-bind-html="data"></div>
+<div ng-repeat="item in items">
+	<div class="container contenta">
+		<div>
+			<blockquote>
+				<h2>{{item.title}}</h2>
+			</blockquote>
+			<hr/>
+		</div>
+
+				<h2>{{item.image}}</h2>
+		<div ng-bind-html="item.content.extended"></div>
+	</div>
+</div>
+
 
 
 
