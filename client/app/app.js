@@ -6,7 +6,8 @@ angular.module('makerPaPaApp', [
   'ngSanitize',
   'ngRoute',
   'btford.socket-io',
-  'ui.bootstrap'
+  'ui.bootstrap',
+  'wu.masonry'
 ])
   .config(function ($routeProvider, $locationProvider) {
     $routeProvider
