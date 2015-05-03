@@ -25,7 +25,12 @@ var app = angular.module('makerPaPaApp')
         }
 
         function getRandomBoxStyle(){
-            return "big-ban-4";
+            var randomNum = Math.random();
+            randomNum = randomNum * 10;
+            randomNum = Math.floor(randomNum);
+            randomNum = randomNum % 6;
+            console.log(randomNum);
+            return ["big-ban-1", "big-ban-2", "big-ban-3", "big-ban-4", "big-ban-5", "big-ban-6"][randomNum];
         }
 
         loadData()
