@@ -12,6 +12,9 @@ var app = angular.module('makerPaPaApp')
 
                         angular.forEach($scope.items, function(value, key) {
                             value.style = getBoxStyle();
+                            if(value.image == undefined || value.image == ""){
+                                value.image = "assets/images/default-community.png";
+                            }
                         });
                     },
                     function(response) {
