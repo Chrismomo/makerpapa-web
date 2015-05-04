@@ -1,7 +1,7 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
 <div class="container">
 	社区
-	<div style="height: 305px">
+	<div>
 		<carousel interval="myInterval">
 		<slide ng-repeat="slide in slides" active="slide.active">
 		<img ng-src="{{slide.image}}" style="margin:auto;">
@@ -15,13 +15,22 @@
 	</div>
 	<div masonry>
 		<div class="masonry-brick" ng-repeat="item in items">
-			<div class="big-ban {{item.style}} box">
-				<div>
-					<h4>{{item.title}}</h4>
-				</div>
-				<img src="{{item.image}}" height="100" width="100">
+			<div class="{{item.style}} box" ng-click="" >
+					<div class="boxxx">
+						{{item.title}}xxxxxxxxxxxxxxxx12345678901234567890123456789xxxx
+					</div>
+				<img ng-src="{{item.image}}" class="box" >
+				</img>
 				<div ng-bind-html="item.content.extended"></div>
+
+
 			</div>
 		</div>
 	</div>
 </div>
+
+				<div class="hidden">
+					You can use the overflow property when you want to have better control of the layout. The default value is visible.
+				</div>
+
+ <!-- height="33vw" width="33vw"    width="280px"-->

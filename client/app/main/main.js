@@ -11,6 +11,10 @@ angular.module('makerPaPaApp')
                 templateUrl: 'app/views/2.community.html',
                 controller: 'CommunityCtrl'
             })
+            .when('/communitydetail', {
+                templateUrl: 'app/views/2.1.community.detail.html',
+                controller: 'CommunityDetailCtrl'
+            })
             .when('/activity', {
                 templateUrl: 'app/views/3.activity.html',
                 controller: 'ActivityCtrl'

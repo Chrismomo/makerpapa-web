@@ -75,10 +75,28 @@ $fa-font-path: "/bower_components/font-awesome/fonts";
 }
 
 .box{
-    padding: 50px 50px;
+    /*  
+    text-align: center;
+    padding: 50px 25px;
     margin: 5px 5px;
+    */
+    width: 280px;
+　　overflow: hidden;
+
+}
+.boxxx{
+    width: 280px;
+　　overflow: hidden;
+
 }
 
+
+div.hidden {
+    background-color: #00FF00;
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+}
 
 @media only screen
 and (min-device-width : 320px)
@@ -110,6 +128,33 @@ and (orientation : landscape) {
         background-size: 100% 100%;
         z-index: 99999;
         background-color: black;
+    }
+}
+
+@media only screen
+and (min-device-width : 100px)
+and (max-device-width : 320px)
+and (orientation : portrait)
+{
+    .header {
+        display: table;
+        height: 70%;
+        width: 100%;
+        position: relative;
+        background: url(../assets/images/desk-mini.jpg) no-repeat;
+        background-size: 100% 100%;
+        z-index: 99999;
+        background-color: black;
+    }
+    .box{
+        /*  
+        text-align: center;
+        padding: 50px 25px;
+        margin: 5px 5px;
+        */
+        padding: 10px 30px;
+        width:90vw;
+
     }
 }
 
