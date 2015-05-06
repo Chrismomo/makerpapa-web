@@ -3,6 +3,17 @@ var app = angular.module('makerPaPaApp')
 
     app.controller('CommunityCtrl', function($scope, CommunityService, $modal, $timeout, $log, $filter, socket) {
 
+        $scope.xxx = function(item){
+            if(item.inlineStyle == "width:100%;z-index: 111;"){
+                item.inlineStyle = "width:23%;z-index: 1;"
+            }else{
+                item.inlineStyle = "width:100%;z-index: 111;";
+            }
+            var temp = $scope.items;
+            $scope.items = [];
+            $scope.items = temp;
+        }
+
         function loadData() {
             CommunityService.getAll()
                 .promise.then(
@@ -15,7 +26,10 @@ var app = angular.module('makerPaPaApp')
                             if(value.image == undefined || value.image == ""){
                                 value.image = "assets/images/default-community.png";
                             }
+                            // value.inlineStyle = "z-index: 1;";
                         });
+
+                        // $scope.items[1].inlineStyle = "100%";
                     },
                     function(response) {
                         alert("get portal app error");
