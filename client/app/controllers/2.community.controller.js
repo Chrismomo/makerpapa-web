@@ -11,7 +11,8 @@ var app = angular.module('makerPaPaApp')
             }
             var temp = $scope.items;
             $scope.items = [];
-            $scope.items = temp;
+            angular.copy(temp, $scope.items);
+
         }
 
         function loadData() {
