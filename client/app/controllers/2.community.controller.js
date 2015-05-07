@@ -3,16 +3,35 @@ var app = angular.module('makerPaPaApp')
 
     app.controller('CommunityCtrl', function($scope, CommunityService, $modal, $timeout, $log, $filter, socket,$rootScope) {
 
-        $scope.xxx = function(item){
-            if(item.inlineStyle == "width:100%;z-index: 111;"){
-                item.inlineStyle = "width:23%;z-index: 1;"
-            }else{
-                item.inlineStyle = "width:100%;z-index: 111;";
+        $scope.tileClicked = function(item){
+            var isStyleChangingNeeded = false;
+            if(item.inlineStyle != "width:100%;"){
+                isStyleChangingNeeded = true;
             }
-            // var temp = $scope.items;
-            // $scope.items = [];
-            // angular.copy(temp, $scope.items);
-setTimeout(function(){ $rootScope.$broadcast('masonry.reload'); }, 100);
+            resetAllTilesSize();
+            if(isStyleChangingNeeded){
+                item.inlineStyle = "width:100%;";
+            }
+            // if(isTheFirstItem(item)){
+
+            //     angular.forEach($scope.items, function(value, key) {
+            //         value.inlineStyle = "width:230;";
+            //     });
+            //     item.inlineStyle = "width:100%;";
+            // }
+            setTimeout(function(){ $rootScope.$broadcast('masonry.reload'); }, 50);
+        }
+
+        function isTheFirstItem(item){
+            if (item == $scope.items[0]) {
+                return true;
+            }
+            return false;
+        }
+        function resetAllTilesSize(){
+            angular.forEach($scope.items, function(value, key) {
+                value.inlineStyle = "width:23%;";
+            });
         }
 
         function loadData() {
@@ -66,9 +85,5 @@ setTimeout(function(){ $rootScope.$broadcast('masonry.reload'); }, 100);
         for (var i = 0; i < 4; i++) {
             $scope.addSlide();
         }
-
-
-
-
 
     });
