@@ -116,6 +116,19 @@ $fa-font-path: "/bower_components/font-awesome/fonts";
     padding: 10px; 
 }
 
+.box_detail{
+    position: absolute; 
+    top: 80px; 
+    bottom: 80px; 
+    left: 0; 
+    width: 100%; 
+    color: white; 
+    letter-spacing: -1px;  
+    background: rgb(0, 0, 0); 
+    background: rgba(0, 0, 0, 0.6); 
+    padding: 10px; 
+}
+
 @media only screen
 and (min-device-width : 320px)
 and (max-device-width : 1024px)

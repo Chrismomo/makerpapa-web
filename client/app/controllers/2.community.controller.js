@@ -1,24 +1,21 @@
 'use strict';
 var app = angular.module('makerPaPaApp')
-
     app.controller('CommunityCtrl', function($scope, CommunityService, $modal, $timeout, $log, $filter, socket,$rootScope) {
+        
+        var TILE_EXPANED_SIZE_2_COLUMNS = "48%";
+        var TILE_EXPANED_SIZE_3_COLUMNS = "73%";
+        var TILE_EXPANED_SIZE = TILE_EXPANED_SIZE_3_COLUMNS;
 
         $scope.tileClicked = function(item){
-            var isStyleChangingNeeded = false;
-            if(item.inlineStyle != "width:100%;"){
-                isStyleChangingNeeded = true;
+            var isTileExpandNeeded = false;
+            if(item.inlineStyle != "width:" + TILE_EXPANED_SIZE + ";"){
+                isTileExpandNeeded = true;
             }
-            resetAllTilesSize();
-            if(isStyleChangingNeeded){
-                item.inlineStyle = "width:100%;";
+            resetAllTiles();
+            if(isTileExpandNeeded){
+                item.inlineStyle = "width:" + TILE_EXPANED_SIZE + ";";
+                item.isDetailShowing = true;
             }
-            // if(isTheFirstItem(item)){
-
-            //     angular.forEach($scope.items, function(value, key) {
-            //         value.inlineStyle = "width:230;";
-            //     });
-            //     item.inlineStyle = "width:100%;";
-            // }
             setTimeout(function(){ $rootScope.$broadcast('masonry.reload'); }, 50);
         }
 
@@ -28,6 +25,18 @@ var app = angular.module('makerPaPaApp')
             }
             return false;
         }
+
+        function resetAllTiles(){
+            resetAllTilesSize();
+            resetAllTileDetailLabels();
+        }
+
+        function resetAllTileDetailLabels(){
+            angular.forEach($scope.items, function(value, key) {
+                value.isDetailShowing = false;
+            });
+        }
+
         function resetAllTilesSize(){
             angular.forEach($scope.items, function(value, key) {
                 value.inlineStyle = "width:23%;";
