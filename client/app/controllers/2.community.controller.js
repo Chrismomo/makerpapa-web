@@ -1,7 +1,7 @@
 'use strict';
 var app = angular.module('makerPaPaApp')
 
-    app.controller('CommunityCtrl', function($scope, CommunityService, $modal, $timeout, $log, $filter, socket) {
+    app.controller('CommunityCtrl', function($scope, CommunityService, $modal, $timeout, $log, $filter, socket,$rootScope) {
 
         $scope.xxx = function(item){
             if(item.inlineStyle == "width:100%;z-index: 111;"){
@@ -9,10 +9,10 @@ var app = angular.module('makerPaPaApp')
             }else{
                 item.inlineStyle = "width:100%;z-index: 111;";
             }
-            var temp = $scope.items;
-            $scope.items = [];
-            angular.copy(temp, $scope.items);
-
+            // var temp = $scope.items;
+            // $scope.items = [];
+            // angular.copy(temp, $scope.items);
+setTimeout(function(){ $rootScope.$broadcast('masonry.reload'); }, 100);
         }
 
         function loadData() {
