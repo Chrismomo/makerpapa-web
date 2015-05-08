@@ -1,3 +1,18 @@
+<script type="text/javascript">
+//this code is used to refresh tiles to make them display in right order.
+//the reason for doing that is masonry has a very smart argrithm, it is show all image in loading order, rather than ng-repeat order.
+( function( window ) {
+	'use strict';
+	window.onload = function() {
+		var container = document.querySelector('.boxs_container');
+		var imgLoad = imagesLoaded( container );
+		imgLoad.on( 'done', function( instance ) {
+			angular.element(document.getElementById('ngview')).scope().xxx();
+		});
+	}
+})( window );
+</script>
+
 <div ng-include="'components/navbar/navbar.html'"></div>
 <div class="container">
 	<div>
@@ -12,12 +27,13 @@
 		</slide>
 		</carousel>
 	</div>
-	<div masonry class="boxs_container" >
-		<div class="masonry-brick box {{item.style}} " ng-repeat="item in items" ng-click="tileClicked(item)" style="{{item.inlineStyle}}">
-			<img ng-src="{{item.image}}" alt="" class="boximage">
+	<div masonry class="boxs_container">
+		<div class="masonry-brick box {{item.style}}" ng-repeat="item in items" ng-click="tileClicked(item)" style="{{item.inlineStyle}}">
+			<img src="{{item.image}}" alt="" class="boximage">
 			<h4 class="box_title"><span>{{item.title}}</span></h4>
 			<div class="box_detail" ng-show="item.isDetailShowing"><span>{{item.title}}{{item.title}}{{item.title}}{{item.title}}{{item.title}}{{item.title}}{{item.title}}{{item.title}}{{item.title}}{{item.title}}{{item.title}}{{item.title}}{{item.title}}{{item.title}}{{item.title}}{{item.title}}{{item.title}}{{item.title}}{{item.title}}{{item.title}}{{item.title}}{{item.title}}{{item.title}}{{item.title}}{{item.title}}{{item.title}}{{item.title}}{{item.title}}{{item.title}}</span></div>
 			<div class="box_desc" ><span>{{item.title}}</span></div>
 		</div>
 	</div>
 </div>
+

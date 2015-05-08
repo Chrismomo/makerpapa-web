@@ -1,10 +1,14 @@
 'use strict';
 var app = angular.module('makerPaPaApp')
-    app.controller('CommunityCtrl', function($scope, CommunityService, $modal, $timeout, $log, $filter, socket,$rootScope) {
+    app.controller('CommunityCtrl', function($document, $scope, CommunityService, $modal, $timeout, $log, $filter, socket,$rootScope) {
         
         var TILE_EXPANED_SIZE_2_COLUMNS = "48%";
         var TILE_EXPANED_SIZE_3_COLUMNS = "73%";
         var TILE_EXPANED_SIZE = TILE_EXPANED_SIZE_3_COLUMNS;
+
+        $scope.xxx = function(){
+            $rootScope.$broadcast('masonry.reload'); 
+        }
 
         $scope.tileClicked = function(item){
             var isTileExpandNeeded = false;
@@ -75,7 +79,6 @@ var app = angular.module('makerPaPaApp')
             randomNum = randomNum * 10;
             randomNum = Math.floor(randomNum);
             randomNum = randomNum % 6;
-            console.log(randomNum);
             return ["big-ban-1", "big-ban-2", "big-ban-3", "big-ban-4", "big-ban-5", "big-ban-6"][randomNum];
         }
 
