@@ -2,9 +2,5 @@
 
 <div class="container">
 	登陆
-
-    <div id="map"></div>
-    <div id="class" ng-repeat="marker in markers | orderBy : 'title'"> 
-    	<a href="#" ng-click="openInfoWindow($event, marker)">{{marker.title}}</a>
-    </div>
+	<ui-gmap-google-map center='map.center' zoom='map.zoom'></ui-gmap-google-map>
 </div>

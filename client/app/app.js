@@ -7,7 +7,8 @@ angular.module('makerPaPaApp', [
   'ngRoute',
   'btford.socket-io',
   'ui.bootstrap',
-  'wu.masonry'
+  'wu.masonry',
+  'uiGmapgoogle-maps'
 ])
   .config(function ($routeProvider, $locationProvider) {
     $routeProvider
