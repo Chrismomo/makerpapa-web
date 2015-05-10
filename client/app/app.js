@@ -7,7 +7,8 @@ angular.module('makerPaPaApp', [
   'ngRoute',
   'btford.socket-io',
   'ui.bootstrap',
-  'wu.masonry'
+  'wu.masonry',
+  'ngMap'
 ])
   .config(function ($routeProvider, $locationProvider) {
     $routeProvider
@@ -17,3 +18,6 @@ angular.module('makerPaPaApp', [
 
     $locationProvider.html5Mode(true);
   });
+
+
+
