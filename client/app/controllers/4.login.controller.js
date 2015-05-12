@@ -2,51 +2,77 @@
 
 
 
+    var centreLat=0.0;
+    var centreLon=0.0;
+    var initialZoom=1;
+    var imageWraps=false; //SET THIS TO false TO PREVENT THE IMAGE WRAPPING AROUND
 
-// Normalizes the coords that tiles repeat across the x axis (horizontally)
-// like the standard Google map tiles.
-function getNormalizedCoord(coord, zoom) {
-    var y = coord.y;
-    var x = coord.x;
+var gmicMapType;
 
-    // tile range in one direction range is dependent on zoom level
-    // 0 = 1 tile, 1 = 2 tiles, 2 = 4 tiles, 3 = 8 tiles, etc
-    var tileRange = 1 << zoom;
-
-    // don't repeat across y-axis (vertically)
-    if (y < 0 || y >= tileRange) {
-        return null;
+    function GMICMapType() {
+        this.Cache = Array();
+        this.opacity = 1.0;
     }
-
-    // repeat across x-axis
-    if (x < 0 || x >= tileRange) {
-        x = (x % tileRange + tileRange) % tileRange;
+    GMICMapType.prototype.tileSize = new google.maps.Size(256, 256);
+    GMICMapType.prototype.maxZoom = 19;
+    GMICMapType.prototype.getTile = function(coord, zoom, ownerDocument) {
+        var c = Math.pow(2, zoom);
+        var c = Math.pow(2, zoom);
+        var tilex=coord.x,tiley=coord.y;
+        if (imageWraps) {
+        if (tilex<0) tilex=c+tilex%c;
+            if (tilex>=c) tilex=tilex%c;
+            if (tiley<0) tiley=c+tiley%c;
+            if (tiley>=c) tiley=tiley%c;
     }
-
-    return {
-        x: x,
-        y: y
-    };
-}
-var moonTypeOptions = {
-    getTileUrl: function(coord, zoom) {
-        var normalizedCoord = getNormalizedCoord(coord, zoom);
-        if (!normalizedCoord) {
-            return null;
+    else {
+        if ((tilex<0)||(tilex>=c)||(tiley<0)||(tiley>=c))
+        {
+            var blank = ownerDocument.createElement('DIV');
+            blank.style.width = this.tileSize.width + 'px';
+            blank.style.height = this.tileSize.height + 'px';
+            return blank;
         }
-        var bound = Math.pow(2, zoom);
-        return 'http://mw1.google.com/mw-planetary/lunar/lunarmaps_v1/clem_bw' +
-            '/' + zoom + '/' + normalizedCoord.x + '/' +
-            (bound - normalizedCoord.y - 1) + '.jpg';
-    },
-    tileSize: new google.maps.Size(256, 256),
-    maxZoom: 9,
-    minZoom: 0,
-    radius: 1738000,
-    name: 'Moon'
-};
+    }
+    var img = ownerDocument.createElement('IMG');
+        var d = tilex;
+        var e = tiley;
+        var f = "t";
+        for (var g = 0; g < zoom; g++) {
+            c /= 2;
+            if (e < c) {
+                if (d < c) { f += "q" }
+                else { f += "r"; d -= c }
+            }
+            else {
+                if (d < c) { f += "t"; e -= c }
+                else { f += "s"; d -= c; e -= c }
+            }
+        }
+        img.id = "t_" + f;
+        img.style.width = this.tileSize.width + 'px';
+        img.style.height = this.tileSize.height + 'px';
+        img.src = "assets/map/"+f+".jpg";
+        this.Cache.push(img);
+        return img;
+    }
+    GMICMapType.prototype.realeaseTile = function(tile) {
+        var idx = this.Cache.indexOf(tile);
+        if(idx!=-1) this.Cache.splice(idx, 1);
+        tile=null;
+    }
+    GMICMapType.prototype.name = "Image Cutter";
+    GMICMapType.prototype.alt = "Image Cutter Tiles";
+    GMICMapType.prototype.setOpacity = function(newOpacity) {
+        this.opacity = newOpacity;
+        for (var i = 0; i < this.Cache.length; i++) {
+            this.Cache[i].style.opacity = newOpacity; //mozilla
+            this.Cache[i].style.filter = "alpha(opacity=" + newOpacity * 100 + ")"; //ie
+        }
+    }
 
-var moonMapType = new google.maps.ImageMapType(moonTypeOptions);
+var moonMapType = new GMICMapType();
+// var moonMapType = new google.maps.ImageMapType(moonTypeOptions);
 
 
 
@@ -85,12 +111,12 @@ angular.module('makerPaPaApp')
 
         loadData()
 
-        $scope.mapTypeChanged = function() {
-            var showStreetViewControl = this.getMapTypeId() != 'coordinate';
-            this.setOptions({
-                'streetViewControl': showStreetViewControl
-            });
-        };
+        // $scope.mapTypeChanged = function() {
+        //     var showStreetViewControl = this.getMapTypeId() != 'coordinate';
+        //     this.setOptions({
+        //         'streetViewControl': showStreetViewControl
+        //     });
+        // };
 
 
     });
