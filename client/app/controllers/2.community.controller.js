@@ -6,7 +6,7 @@ var app = angular.module('makerPaPaApp')
         var TILE_EXPANED_SIZE_3_COLUMNS = "73%";
         var TILE_EXPANED_SIZE = TILE_EXPANED_SIZE_3_COLUMNS;
 
-        $scope.xxx = function(){
+        $scope.refreshTiles = function(){
             $rootScope.$broadcast('masonry.reload'); 
         }
 

@@ -7,7 +7,7 @@
 		var container = document.querySelector('.boxs_container');
 		var imgLoad = imagesLoaded( container );
 		imgLoad.on( 'done', function( instance ) {
-			angular.element(document.getElementById('ngview')).scope().xxx();
+			angular.element(document.getElementById('ngview')).scope().refreshTiles();
 		});
 	}
 })( window );
