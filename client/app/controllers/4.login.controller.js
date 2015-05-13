@@ -105,7 +105,7 @@ CoordMapType.prototype.alt = 'Tile Coordinate Map Type';
 
 
 angular.module('makerPaPaApp')
-    .controller('LoginCtrl', function($scope, $modal, $timeout, $log, $filter, socket, $document) {
+    .controller('LoginCtrl', function($scope, $modal, $timeout, $log, $filter, socket, $document, $window) {
 
         function loadData() {}
 
@@ -119,4 +119,82 @@ angular.module('makerPaPaApp')
         // };
 
 
+        var map;
+        $scope.$on('mapInitialized', function(evt, evtMap) {
+            map = evtMap;
+        });
+
+        $scope.mapClicked = function(event){
+            // $scope.alertLocation(event);
+            $scope.placeMarker(event);
+            $scope.placeInfoWindow(event);
+        };
+
+        //点击地图，显示坐标
+        $scope.alertLocation = function(event){
+            $window.alert('Point.X.Y: ' + event.latLng + 'zoom:' + map.getZoom());
+            //得到zoom级别和Tile的坐标
+        // var numTiles = 1 << map.getZoom();
+        // var projection = new MercatorProjection();
+        // $scope.chicago = map.getCenter();
+        // $scope.worldCoordinate = projection.fromLatLngToPoint($scope.chicago);
+        // $scope.pixelCoordinate = new google.maps.Point(
+        //     $scope.worldCoordinate.x * numTiles,
+        //     $scope.worldCoordinate.y * numTiles);
+        // $scope.tileCoordinate = new google.maps.Point(
+        //     Math.floor($scope.pixelCoordinate.x / TILE_SIZE),
+        //     Math.floor($scope.pixelCoordinate.y / TILE_SIZE));
+            // LatLng: {{chicago.lat()}}, {{chicago.lng()}}, <br>
+            // World Coordinate: {{worldCoordinate.x}}, {{worldCoordinate.y}}, <br>
+            // Pixel Coordinate: {{pixelCoordinate.x}}, {{pixelCoordinate.y}}, <br>
+            // Tile Coordinate: {{tileCoordinate.x}}, {{tileCoordinate.y}} at Zoom Level {{map.getZoom()}}
+
+        };
+
+        $scope.placeMarker = function(event) {
+            var marker = new google.maps.Marker({position: event.latLng, map: map});
+            // new google.maps.Marker({
+            //     position: $scope.neighborhoods[iterator++],
+            //     map: $scope.map,
+            //     draggable: false,
+            //     animation: google.maps.Animation.DROP
+            // });
+        };
+
+        $scope.placeInfoWindow = function(event) {
+            // var marker = new google.maps.Marker({position: event.latLng, map: map});
+            var infoWindow = map.infoWindows['1xx'];
+            var safasdf = map.infoWindows;
+
+
+            infoWindow.setContent('Zooxxxm: ' + map.getZoom());    
+                // map.setCenter(infoWindow.getPosition());
+
+            //显示infowindow.
+            // $scope.showInfoWindow(event, '1xx')
+
+
+            //关于当前中心点。
+            //设置当前center,有移动动画
+            // map.panTo(event.latLng);
+            //得到当前center
+            // var center = map.getCenter();
+            //设置当前center
+            // map.setCenter(center);
+        };
+
+
+
+        $scope.btnClick = function(event) {
+            $window.alert('btn clicked');
+        };
+
+
     });
+
+
+
+
+
+
+
