@@ -126,11 +126,13 @@ angular.module('makerPaPaApp')
 
         $scope.mapClicked = function(event){
             // $scope.alertLocation(event);
-            $scope.placeMarker(event);
-            $scope.placeInfoWindow(event);
+            // $scope.placeMarker(event);
+            // $scope.placeInfoWindow(event);
+            $scope.placeMarkWithInfoWindow(event);
+
         };
 
-        //点击地图，显示坐标
+        //点击地图，alert坐标
         $scope.alertLocation = function(event){
             $window.alert('Point.X.Y: ' + event.latLng + 'zoom:' + map.getZoom());
             //得到zoom级别和Tile的坐标
@@ -152,31 +154,14 @@ angular.module('makerPaPaApp')
         };
 
         $scope.placeMarker = function(event) {
-            // var marker = new google.maps.Marker({position: event.latLng, map: map});
+            var marker = new google.maps.Marker({position: event.latLng, map: map});
 
-            
             // new google.maps.Marker({
             //     position: $scope.neighborhoods[iterator++],
             //     map: $scope.map,
             //     draggable: false,
             //     animation: google.maps.Animation.DROP
             // });
-        };
-
-        $scope.placeInfoWindow = function(event) {
-            // var marker = new google.maps.Marker({position: event.latLng, map: map});
-
-
-            // var infoWindow = map.infoWindows['1xx'];
-            // var safasdf = map.infoWindows;
-
-
-            // infoWindow.setContent('Zooxxxm: ' + map.getZoom());    
-                // map.setCenter(infoWindow.getPosition());
-
-            //显示infowindow.
-            // $scope.showInfoWindow(event, '1xx')
-
 
             //关于当前中心点。
             //设置当前center,有移动动画
@@ -185,12 +170,38 @@ angular.module('makerPaPaApp')
             // var center = map.getCenter();
             //设置当前center
             // map.setCenter(center);
+        };
+
+        $scope.placeInfoWindow = function(event) {
+            // var infoWindow = map.infoWindows['1xx'];
+            // var safasdf = map.infoWindows;
+            // infoWindow.setContent('Zooxxxm: ' + map.getZoom());    
+                // map.setCenter(infoWindow.getPosition());
+            //显示infowindow.
+            // $scope.showInfoWindow(event, '1xx')
 
 
             var marker = new google.maps.Marker({position: event.latLng, map: map});
-            var infoWindow = new google.maps.InfoWindow({
-                content:'Hi<br/>I am an infowindow'
-            });
+            var infoWindow = new google.maps.InfoWindow();
+            var contentString = '<b>Bermuda Triangle polygon</b><br>' +
+            'Clicked location: <br>' + event.latLng.lat() + ' , ' + event.latLng.lng() +
+            '<br>';
+            infoWindow.setContent(contentString);
+            infoWindow.setPosition(event.latLng);
+            infoWindow.open(map);
+            // infoWindow.open(map, marker);
+        };
+
+
+
+        $scope.placeMarkWithInfoWindow = function(event) {
+            var marker = new google.maps.Marker({position: event.latLng, map: map});
+            var infoWindow = new google.maps.InfoWindow();
+            var contentString = '<b>Clicked Location: </b><br>' +
+            'Lat : ' + event.latLng.lat() + ' <br> Lng : ' + event.latLng.lng() +
+            '<br>';
+            infoWindow.setContent(contentString);
+            infoWindow.setPosition(event.latLng);
             infoWindow.open(map, marker);
         };
 
