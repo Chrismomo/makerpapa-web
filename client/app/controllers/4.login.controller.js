@@ -122,7 +122,43 @@ angular.module('makerPaPaApp')
         var map;
         $scope.$on('mapInitialized', function(evt, evtMap) {
             map = evtMap;
+            $scope.xxxx();
         });
+
+        $scope.xxxx = function(){
+
+            var swBound = new google.maps.LatLng(281.70, -1217.50);
+            var neBound = new google.maps.LatLng(418.85, -551.90);
+            var allowedBounds = new google.maps.LatLngBounds(swBound, neBound);
+
+
+            var boundLimits = {
+                maxLat : allowedBounds.getNorthEast().lat(),
+                maxLng : allowedBounds.getNorthEast().lng(),
+                minLat : allowedBounds.getSouthWest().lat(),
+                minLng : allowedBounds.getSouthWest().lng()
+            };
+
+            var lastValidCenter = map.getCenter();
+            var newLat, newLng;
+            google.maps.event.addListener(map, 'center_changed', function() {
+                var center = map.getCenter();
+                if (allowedBounds.contains(center)) {
+                    // still within valid bounds, so save the last valid position
+                    lastValidCenter = map.getCenter();
+                    return;
+                }
+                newLat = lastValidCenter.lat();
+                newLng = lastValidCenter.lng();
+                if(center.lng() > boundLimits.minLng && center.lng() < boundLimits.maxLng){
+                    newLng = center.lng();
+                }
+                if(center.lat() > boundLimits.minLat && center.lat() < boundLimits.maxLat){
+                    newLat = center.lat();
+                }
+                map.panTo(new google.maps.LatLng(newLat, newLng));
+            });
+        }
 
         $scope.mapClicked = function(event){
             // $scope.alertLocation(event);
@@ -180,7 +216,6 @@ angular.module('makerPaPaApp')
             //显示infowindow.
             // $scope.showInfoWindow(event, '1xx')
 
-
             var marker = new google.maps.Marker({position: event.latLng, map: map});
             var infoWindow = new google.maps.InfoWindow();
             var contentString = '<b>Bermuda Triangle polygon</b><br>' +
@@ -189,10 +224,7 @@ angular.module('makerPaPaApp')
             infoWindow.setContent(contentString);
             infoWindow.setPosition(event.latLng);
             infoWindow.open(map);
-            // infoWindow.open(map, marker);
         };
-
-
 
         $scope.placeMarkWithInfoWindow = function(event) {
             var marker = new google.maps.Marker({position: event.latLng, map: map});
@@ -205,12 +237,9 @@ angular.module('makerPaPaApp')
             infoWindow.open(map, marker);
         };
 
-
-
         $scope.btnClick = function(event) {
             $window.alert('btn clicked');
         };
-
 
     });
 
