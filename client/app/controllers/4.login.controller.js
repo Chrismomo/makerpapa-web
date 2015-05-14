@@ -152,7 +152,9 @@ angular.module('makerPaPaApp')
         };
 
         $scope.placeMarker = function(event) {
-            var marker = new google.maps.Marker({position: event.latLng, map: map});
+            // var marker = new google.maps.Marker({position: event.latLng, map: map});
+
+            
             // new google.maps.Marker({
             //     position: $scope.neighborhoods[iterator++],
             //     map: $scope.map,
@@ -163,11 +165,13 @@ angular.module('makerPaPaApp')
 
         $scope.placeInfoWindow = function(event) {
             // var marker = new google.maps.Marker({position: event.latLng, map: map});
-            var infoWindow = map.infoWindows['1xx'];
-            var safasdf = map.infoWindows;
 
 
-            infoWindow.setContent('Zooxxxm: ' + map.getZoom());    
+            // var infoWindow = map.infoWindows['1xx'];
+            // var safasdf = map.infoWindows;
+
+
+            // infoWindow.setContent('Zooxxxm: ' + map.getZoom());    
                 // map.setCenter(infoWindow.getPosition());
 
             //显示infowindow.
@@ -181,6 +185,13 @@ angular.module('makerPaPaApp')
             // var center = map.getCenter();
             //设置当前center
             // map.setCenter(center);
+
+
+            var marker = new google.maps.Marker({position: event.latLng, map: map});
+            var infoWindow = new google.maps.InfoWindow({
+                content:'Hi<br/>I am an infowindow'
+            });
+            infoWindow.open(map, marker);
         };
 
 
