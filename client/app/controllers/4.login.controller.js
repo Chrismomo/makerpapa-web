@@ -158,6 +158,32 @@ angular.module('makerPaPaApp')
                 }
                 map.panTo(new google.maps.LatLng(newLat, newLng));
             });
+
+
+
+            // var allowedBounds = new google.maps.LatLngBounds(
+            //      new google.maps.LatLng(-281.70, -1217.50), 
+            //      new google.maps.LatLng(418.85, 551.90)
+            // );
+
+
+            // var swBound = new google.maps.LatLng(281.70, -1217.50);
+            // var neBound = new google.maps.LatLng(418.85, -551.90);
+            // var allowedBounds = new google.maps.LatLngBounds(swBound, neBound);
+            
+            // var lastValidCenter = map.getCenter();
+
+            // google.maps.event.addListener(map, 'center_changed', function() {
+            //     if (allowedBounds.contains(map.getCenter())) {
+            //         // still within valid bounds, so save the last valid position
+            //         lastValidCenter = map.getCenter();
+            //         return; 
+            //     }
+
+            //     // not valid anymore => return to last valid position
+            //     map.panTo(lastValidCenter);
+            // });
+
         }
 
         $scope.mapClicked = function(event){
