@@ -1,0 +1,19 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<div class="container">
+	地图
+</div>
+
+
+
+<!-- more map layer for marks. -->
+<map zoom="3" center="0,0" street-view-control="false" map-type-id="moon" map-type-control-options="{
+  mapTypeIds: ['moon']
+}">
+	<map-type name="moon" object="moonMapType">
+	</map-type>
+
+	<custom-control id="home" position="TOP_RIGHT" index="1" on-click="btnClick()">
+      <button>button</button>
+    </custom-control>
+</map>

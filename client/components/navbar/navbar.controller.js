@@ -14,6 +14,12 @@ angular.module('makerPaPaApp')
     },{
       'title': '登陆',
       'link': '/login'
+    },{
+      'title': '地图',
+      'link': '/map'
+    },{
+      'title': '地图老板',
+      'link': '/mapboss'
     }];
 
     $scope.isCollapsed = true;

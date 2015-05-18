@@ -23,7 +23,17 @@ angular.module('makerPaPaApp')
                 templateUrl: 'app/views/4.login.html',
                 controller: 'LoginCtrl'
             })
+            .when('/map', {
+                templateUrl: 'app/views/5.map.html',
+                controller: 'MapCtrl'
+            })
+            .when('/mapboss', {
+                templateUrl: 'app/views/6.mapboss.html',
+                controller: 'MapBossCtrl'
+            })
             .otherwise({
                 redirectTo: '/class'
             });
     });
+
+
